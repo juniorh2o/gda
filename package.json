@@ -1,0 +1,27 @@
+{
+  "name": "gda-udesc",
+  "version": "1.0",
+  "description": "Projeto acadêmico multidisciplinar",
+  "author": "Sidney Schneider <sidney.sch.junior@gmail.com>",
+  "contributors": [
+    {
+      "name": "Eduardo Pitz"
+    },
+    {
+      "name": "Gabriela Ramos"
+    },
+    {
+      "name": "Johann Gorgen"
+    }
+  ],
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mysql": "^2.11.1",
+    "sequelize": "^3.24.6"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  },
+  "private": false
+}
