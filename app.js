@@ -7,12 +7,20 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-require('./routes.server').init(app);
+app.set('views', './server/views');
+
+app.engine('html', require('ejs').renderFile);
 
 app.set('view engine', 'html');
 
+app.use('/public', express.static('./public'));
+
+app.use('/bower_components', express.static('./bower_components'));
+
+require('./server/routes.server').init(app);
+
 app.get('/', function (req, res) {
-    res.send('Hello World!');
+    res.render('index');
 });
 
 app.listen(3000, function () {

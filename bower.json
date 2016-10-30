@@ -1,0 +1,35 @@
+{
+  "name": "gda-udesc",
+  "description": "Projeto acadêmico multidisciplinar",
+  "main": "",
+  "authors": [
+    {
+      "name": "Sidney Schneider Junior",
+      "mail": "sidney.sch.junior@gmail.com"
+    },
+    {
+      "name": "Eduardo Pitz"
+    },
+    {
+      "name": "Gabriela Ramos"
+    },
+    {
+      "name": "Johann Gorgen"
+    }
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/juniorh2o/gda",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-ui-router": "^0.3.1",
+    "ng-dialog": "ngDialog#^0.6.4"
+  }
+}
