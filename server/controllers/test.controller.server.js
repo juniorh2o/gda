@@ -1,8 +1,13 @@
 var db = require("./../connection");
 
 exports.getTest = function (req, res) {
-    //return res.status(400).json({success: false, err: err});
-    return res.status(200).json({success: true});
+    db.Test.findAll({
+        include: [{model: db.Note}]
+    }).then(function (data) {
+        return res.status(200).json({success: true, data: data});
+    }).catch(function (err) {
+        return res.status(400).json({success: false, err: err});
+    });
 };
 
 exports.createTest = function (req, res) {
@@ -21,8 +26,16 @@ exports.createTest = function (req, res) {
 };
 
 exports.deleteTest = function (req, res) {
-    //return res.status(400).json({success: false, err: err});
-    return res.status(200).json({success: true});
+    db.Test.destroy({
+        where: {id: req.body.id}
+    }).then(function (rowaffected) {
+        if (rowaffected)
+            return res.status(200).json({success: true});
+        else
+            return res.status(400).json({success: false, err: "no object deleted"});
+    }).catch(function (err) {
+        return res.status(400).json({success: false, err: err});
+    });
 };
 
 exports.editTest = function (req, res) {

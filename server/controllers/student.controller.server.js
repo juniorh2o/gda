@@ -1,8 +1,13 @@
 var db = require("./../connection");
 
 exports.getStudent = function (req, res) {
-    //return res.status(400).json({success: false, err: err});
-    return res.status(200).json({success: true});
+    db.Student.findAll({
+        include: [{model: db.Note}]
+    }).then(function (data) {
+        return res.status(200).json({success: true, data: data});
+    }).catch(function (err) {
+        return res.status(400).json({success: false, err: err});
+    });
 };
 
 exports.createStudent = function (req, res) {
@@ -17,8 +22,16 @@ exports.createStudent = function (req, res) {
 };
 
 exports.deleteStudent = function (req, res) {
-    //return res.status(400).json({success: false, err: err});
-    return res.status(200).json({success: true});
+    db.Student.destroy({
+        where: {id: req.body.id}
+    }).then(function (rowaffected) {
+        if (rowaffected)
+            return res.status(200).json({success: true});
+        else
+            return res.status(400).json({success: false, err: "no object deleted"});
+    }).catch(function (err) {
+        return res.status(400).json({success: false, err: err});
+    });
 };
 
 exports.editStudent = function (req, res) {
