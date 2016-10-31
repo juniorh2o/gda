@@ -35,6 +35,20 @@ exports.deleteDiscipline = function (req, res) {
 };
 
 exports.editDiscipline = function (req, res) {
-    //return res.status(400).json({success: false, err: err});
-    return res.status(200).json({success: true});
+    db.Discipline.find({where: {id: req.body.id}}).then(function (obj) {
+        if (obj) {
+            obj.name = req.body.name;
+
+            obj.save().then(function (objSaved) {
+                return res.status(200).json({success: true});
+            }).catch(function (err) {
+                return res.status(400).json({success: false, err: "failed to save the edited object"});
+            });
+        }
+        else
+            return res.status(400).json({success: false, err: "no object found to edit"});
+
+    }).catch(function (err) {
+        return res.status(400).json({success: false, err: err});
+    });
 };
