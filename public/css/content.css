@@ -1,0 +1,16 @@
+.dashboard-content {
+    padding-left: 40px;
+    margin-top: 51px;
+    width: 100%;
+    height: calc(100% - 60px);
+    background-color: #fff;
+    position: absolute;
+}
+
+@media (min-width: 768px) {
+    .dashboard-content {
+        margin-left: 90px;
+        border-left: 1px solid #e7e7e7;
+        width: calc(100% - 90px);
+    }
+}

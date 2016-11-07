@@ -19,7 +19,7 @@ app.use('/bower_components', express.static('./bower_components'));
 
 require('./server/routes.server').init(app);
 
-app.get('/', function (req, res) {
+app.get('*', function (req, res) {
     res.render('index');
 });
 
