@@ -8,7 +8,7 @@ module.exports = function (conn, Sequelize) {
         tableName: 'discipline',
         timestamps: false,
         associate: function (models) {
-            obj.hasMany(models.Teacher);
+            obj.hasMany(models.Class);
         }
     });
     return obj;

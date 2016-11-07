@@ -9,7 +9,6 @@ module.exports = function (conn, Sequelize) {
         timestamps: false,
         associate: function (models) {
             obj.hasMany(models.Note);
-            obj.belongsTo(models.Teacher);
             obj.belongsTo(models.Class);
         }
     });

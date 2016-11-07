@@ -12,7 +12,15 @@ module.exports = function (conn, Sequelize) {
         tableName: 'class',
         timestamps: false,
         associate: function (models) {
-            obj.hasMany(models.Student);
+            obj.belongsTo(models.Discipline);
+            obj.belongsTo(models.Teacher);
+
+            obj.belongsToMany(models.Student, {
+                as: 'StudentClass',
+                through: 'student_class',
+                timestamps: false
+            });
+
             obj.hasMany(models.Test);
         }
     });
