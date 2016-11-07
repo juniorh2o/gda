@@ -1,3 +1,7 @@
+.main-header-title {
+    display: none;
+}
+
 .dashboard-header {
     border-bottom: 1px solid #114354;
     background: #FFF;
@@ -102,6 +106,13 @@
         position: absolute;
         width: 90px;
         margin-top: 61px;
+    }
+
+    .main-header-title {
+        margin: 5px 0 0 25px;
+        font-weight: bold;
+        font-size: 30px;
+        display: block;
     }
 }
 
