@@ -33,6 +33,7 @@
     "ng-dialog": "ngDialog#^0.6.4",
     "jquery": "^3.1.1",
     "font-awesome": "^4.7.0",
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "angular-bootstrap": "^2.2.0"
   }
 }

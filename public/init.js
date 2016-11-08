@@ -1,4 +1,4 @@
-angular.module('gdaApp', ['ui.router', 'ngDialog'])
+angular.module('gdaApp', ['ui.router', 'ngDialog','ui.bootstrap'])
     .config(['$locationProvider', 'ngDialogProvider', '$stateProvider',
         function ($locationProvider, ngDialogProvider, $stateProvider) {
             $locationProvider.html5Mode(true);
