@@ -18,3 +18,71 @@ html, body {
     overflow: visible;
     position: absolute;
 }
+
+input {
+    width: 300px;
+    height: 45px;
+    font-size: 16px;
+    color: #202020;
+    padding-left: 35px;
+    border-radius: 5px;
+    border: solid #b3b5bd 1px;
+    margin-bottom: 19px;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #FFF inset;
+    background: none;
+}
+
+input.ng-dirty, textarea.ng-dirty {
+    border: solid #b3b5bd 1px;
+}
+
+input.ng-dirty.ng-valid, textarea.ng-dirty.ng-valid {
+    border: solid #202020 1px;
+}
+
+input.ng-dirty.ng-invalid, textarea.ng-dirty.ng-invalid {
+    border: solid #FA787E 1px;
+}
+
+.generic-button {
+    width: 105px;
+    height: 35px;
+    border-radius: 5px;
+    border: 0;
+    background-color: #314388;
+    text-align: center;
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 35px;
+    cursor: pointer;
+}
+
+.dialog-form-title {
+    text-align: left;
+    margin-left: 25px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #2e3133;
+}
+
+.dialog-form-input-readonly {
+    background: #CECECE;
+    width: 60px;
+    padding-left: 20px;
+    margin-left: 25px;
+
+}
+
+.dialog-form-input-readonly-box {
+    width: 100%;
+    text-align: left;
+}
+
+.delete-button {
+    float:right;
+    background:#662222;
+    width:75px;
+}

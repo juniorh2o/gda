@@ -5,7 +5,7 @@ angular.module('gdaApp').controller('DisciplineController',
             $controller('GenericController', {scope: $scope});
             $scope.paginateUri = '/api/discipline/get';
             $scope.sort = 'id';
-            $scope.order = 'asc';
+            $scope.order = 'desc';
 
             $scope.create = function () {
                 $scope.dialog = ngDialog.open({

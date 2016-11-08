@@ -2,9 +2,22 @@
     <div class="dialog-close" ng-click="close()">X</div>
     <div class="clear"></div>
     <div class="dialog-edit-header">
-        OLA
+        Disciplinas
     </div>
     <div class="dialog-edit-content">
-        OLA
+        <form name="form" novalidate autocomplete="on">
+            <button type="button" class="generic-button delete-button" ng-click="delete()" ng-show="discipline.id">Delete</button>
+            <div class="dialog-form-title" ng-show="discipline.id">ID:</div>
+            <div class="dialog-form-input-readonly-box">
+                <input class="dialog-form-input dialog-form-input-readonly" required name="id" readonly type="text"
+                       data-ng-model="discipline.id"
+                       ng-show="discipline.id"/>
+            </div>
+            <div class="dialog-form-title">Nome:</div>
+            <input class="dialog-form-input" required name="name" type="text" data-ng-model="discipline.name"
+                   placeholder="Nome"/>
+
+            <button type="submit" class="generic-button" ng-click="submit()">Enviar</button>
+        </form>
     </div>
 </div>

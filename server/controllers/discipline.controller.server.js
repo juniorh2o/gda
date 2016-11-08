@@ -2,7 +2,7 @@ var db = require("./../connection");
 
 exports.getDiscipline = function (req, res) {
     var params = req.query;
-    var maxResults = 5;
+    var maxResults = 10;
     var offset = params.page ? --params.page * maxResults : 0;
     var sort = params.sort ? params.sort : 'totalCameras';
     var order = params.order ? params.order : 'desc';
@@ -76,7 +76,7 @@ exports.editDiscipline = function (req, res) {
             obj.name = req.body.name;
 
             obj.save().then(function (objSaved) {
-                return res.status(200).json({success: true});
+                return res.status(200).json({success: true, obj: objSaved});
             }).catch(function (err) {
                 return res.status(400).json({success: false, err: "failed to save the edited object"});
             });

@@ -6,7 +6,7 @@ var db = {};
 
 // create your instance of sequelize
 var conn = new Sequelize("gda", "root", "", {
-    host: "localhost",
+    host: "127.0.0.1",
     dialect: 'mysql',
     pool: {
         max: 150,
