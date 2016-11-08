@@ -3,17 +3,17 @@ angular.module('gdaApp').controller('TeacherController',
         function ($scope, $controller, ngDialog) {
 
             $controller('GenericController', {scope: $scope});
-            $scope.paginateUri = '/api/discipline/get';
+            $scope.paginateUri = '/api/teacher/get';
             $scope.sort = 'id';
             $scope.order = 'desc';
 
             $scope.create = function () {
                 $scope.dialog = ngDialog.open({
-                    template: 'public/views/discipline_edit.view.html',
-                    controller: 'DisciplineEditController',
+                    template: 'public/views/teacher_edit.view.html',
+                    controller: 'TeacherEditController',
                     scope: $scope,
                     resolve: {
-                        discipline: function () {
+                        teacher: function () {
                             return {
                                 "id": null
                             };
@@ -24,11 +24,11 @@ angular.module('gdaApp').controller('TeacherController',
 
             $scope.edit = function (obj) {
                 $scope.dialog = ngDialog.open({
-                    template: 'public/views/discipline_edit.view.html',
-                    controller: 'DisciplineEditController',
+                    template: 'public/views/teacher_edit.view.html',
+                    controller: 'TeacherEditController',
                     scope: $scope,
                     resolve: {
-                        discipline: function ($filter) {
+                        teacher: function ($filter) {
                             //return $filter('getByProperty')('id', obj.id, $scope.gridResults);
                             return obj;
                         }

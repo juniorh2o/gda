@@ -47,7 +47,7 @@ exports.getDiscipline = function (req, res) {
 };
 
 exports.createDiscipline = function (req, res) {
-    db.Discipline.create({name: req.body.name}).then(function (obj) {
+    db.Discipline.create({name: req.body.name, abrev: req.body.abrev}).then(function (obj) {
         if (obj)
             return res.status(200).json({success: true});
         else

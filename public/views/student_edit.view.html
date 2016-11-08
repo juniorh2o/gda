@@ -2,19 +2,19 @@
     <div class="dialog-close" ng-click="close()">X</div>
     <div class="clear"></div>
     <div class="dialog-edit-header">
-        Disciplinas
+        Estudantes
     </div>
     <div class="dialog-edit-content">
         <form name="form" novalidate autocomplete="on">
-            <button type="button" class="generic-button delete-button" ng-click="delete()" ng-show="discipline.id">Delete</button>
-            <div class="dialog-form-title" ng-show="discipline.id">ID:</div>
+            <button type="button" class="generic-button delete-button" ng-click="delete()" ng-show="student.id">Delete</button>
+            <div class="dialog-form-title" ng-show="student.id">ID:</div>
             <div class="dialog-form-input-readonly-box">
                 <input class="dialog-form-input dialog-form-input-readonly" required name="id" readonly type="text"
-                       data-ng-model="discipline.id"
-                       ng-show="discipline.id"/>
+                       data-ng-model="student.id"
+                       ng-show="student.id"/>
             </div>
             <div class="dialog-form-title">Nome:</div>
-            <input class="dialog-form-input" required name="name" type="text" data-ng-model="discipline.name"
+            <input class="dialog-form-input" required name="name" type="text" data-ng-model="student.name"
                    placeholder="Nome"/>
 
             <button type="submit" class="generic-button" ng-click="submit()">Enviar</button>

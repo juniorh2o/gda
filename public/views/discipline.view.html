@@ -34,7 +34,11 @@
                                 <i class="margin-left-5 fa {{ order === 'asc' ? 'fa-angle-down' : 'fa-angle-up' }} {{ sort !== 'id' ? 'fade' : '' }}"></i>
                             </th>
                             <th class="can-order pointer" ng-click="setSort('name')">
-                                Name
+                                Abrev
+                                <i class="margin-left-5 fa {{ order === 'asc' ? 'fa-angle-down' : 'fa-angle-up' }} {{ sort !== 'whitelabel' ? 'fade' : '' }}"></i>
+                            </th>
+                            <th class="can-order pointer" ng-click="setSort('abrev')">
+                                Nome
                                 <i class="margin-left-5 fa {{ order === 'asc' ? 'fa-angle-down' : 'fa-angle-up' }} {{ sort !== 'whitelabel' ? 'fade' : '' }}"></i>
                             </th>
 
@@ -47,6 +51,7 @@
                                         class="btn btn-warning edit-on-table-row"><i class="fa fa-pencil"></i></button>
                             </th>
                             <th scope="row" ng-bind="obj.id"></th>
+                            <td ng-bind="obj.abrev"></td>
                             <td ng-bind="obj.name"></td>
                         </tr>
                         </tbody>
