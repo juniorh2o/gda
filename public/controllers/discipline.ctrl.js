@@ -1,6 +1,6 @@
 angular.module('gdaApp').controller('DisciplineController',
-    ['$scope', '$controller',
-        function ($scope, $controller) {
+    ['$scope', '$controller', 'ngDialog',
+        function ($scope, $controller, ngDialog) {
 
             $controller('GenericController', {scope: $scope});
             $scope.paginateUri = '/api/discipline/get';
@@ -8,11 +8,32 @@ angular.module('gdaApp').controller('DisciplineController',
             $scope.order = 'asc';
 
             $scope.create = function () {
-                alert("ngDialog");
+                $scope.dialog = ngDialog.open({
+                    template: 'public/views/discipline_edit.view.hmtl',
+                    controller: 'DisciplineEditController',
+                    scope: $scope,
+                    resolve: {
+                        discipline: function () {
+                            return {
+                                "id": null
+                            };
+                        }
+                    }
+                });
             };
 
-            $scope.edit = function () {
-                alert("ngDialog");
+            $scope.edit = function (obj) {
+                $scope.dialog = ngDialog.open({
+                    template: 'public/views/discipline_edit.view.hmtl',
+                    controller: 'DisciplineEditController',
+                    scope: $scope,
+                    resolve: {
+                        discipline: function ($filter) {
+                            //return $filter('getByProperty')('id', obj.id, $scope.gridResults);
+                            return obj;
+                        }
+                    }
+                });
             };
 
             $scope.onPageChanged();

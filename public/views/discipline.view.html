@@ -43,13 +43,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="result in gridResults">
+                        <tr ng-repeat="obj in gridResults">
                             <th scope="row">
-                                <button type="button" ng-click="edit(result)"
+                                <button type="button" ng-click="edit(obj)"
                                         class="btn btn-warning edit-on-table-row"><i class="fa fa-pencil"></i></button>
                             </th>
-                            <th scope="row" ng-bind="result.id"></th>
-                            <td ng-bind="result.name"></td>
+                            <th scope="row" ng-bind="obj.id"></th>
+                            <td ng-bind="obj.name"></td>
                         </tr>
                         </tbody>
                     </table>

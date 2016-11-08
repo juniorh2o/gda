@@ -1,4 +1,4 @@
-angular.module('gdaApp', ['ui.router', 'ngDialog','ui.bootstrap'])
+angular.module('gdaApp', ['ui.router', 'ngDialog', 'ui.bootstrap'])
     .config(['$locationProvider', 'ngDialogProvider', '$stateProvider',
         function ($locationProvider, ngDialogProvider, $stateProvider) {
             $locationProvider.html5Mode(true);
@@ -145,4 +145,14 @@ angular.module('gdaApp', ['ui.router', 'ngDialog','ui.bootstrap'])
                 }
             });
         }
-    ]);
+    ]).filter('getByProperty', function () {
+    return function (propertyName, propertyValue, collection) {
+        var i = 0, len = collection.length;
+        for (; i < len; i++) {
+            if (collection[i][propertyName] == propertyValue) {
+                return collection[i];
+            }
+        }
+        return null;
+    };
+});
