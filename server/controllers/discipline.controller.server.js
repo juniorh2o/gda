@@ -2,7 +2,7 @@ var db = require("./../connection");
 
 exports.getDiscipline = function (req, res) {
     var params = req.query;
-    var maxResults = 10;
+    var maxResults = 5;
     var offset = params.page ? --params.page * maxResults : 0;
     var sort = params.sort ? params.sort : 'totalCameras';
     var order = params.order ? params.order : 'desc';
