@@ -68,25 +68,6 @@ angular.module('gdaApp', ['ui.router', 'ngDialog', 'ui.bootstrap'])
                     }
                 }
             }).state({
-                name: "home.note",
-                url: "notas",
-                views: {
-                    "header": {
-                        templateUrl: 'public/views/header.view.html',
-                        controller: 'HeaderController'
-                    },
-                    "content": {
-                        templateUrl: 'public/views/content.view.html'
-                    },
-                    "title@home": {
-                        template: "Notas"
-                    },
-                    "data@home": {
-                        templateUrl: 'public/views/note.view.html',
-                        controller: 'NoteController'
-                    }
-                }
-            }).state({
                 name: "home.student",
                 url: "estudantes",
                 views: {

@@ -1,6 +1,6 @@
 module.exports = function (conn, Sequelize) {
     var obj = conn.define('Class', {
-        name: {
+        abrev: {
             type: Sequelize.STRING,
             allowNull: false
         },

@@ -1,17 +1,53 @@
 var db = require("./../connection");
 
 exports.getTeacher = function (req, res) {
-    db.Teacher.findAll({
-        include: [{model: db.Test}]
-    }).then(function (data) {
-        return res.status(200).json({success: true, data: data});
+    var params = req.query;
+    var maxResults = 10;
+    var offset = params.page ? --params.page * maxResults : 0;
+    var sort = params.sort ? params.sort : 'totalCameras';
+    var order = params.order ? params.order : 'desc';
+
+    var queryObj = {
+        limit: maxResults,
+        offset: offset,
+        order: sort + " " + order + ', name asc',
+        raw: true
+    };
+
+    if (params.filter && typeof params.filter == "string") {
+        var operation = {$like: "%" + params.filter + "%"};
+        if (!queryObj.where) {
+            queryObj.where = {};
+        }
+        queryObj.where['$or'] = {
+            name: operation
+        };
+
+        if (!isNaN(params.filter)) {
+            queryObj.where.$or['id'] = params.filter;
+        }
+    }
+
+    db.Teacher.findAndCountAll(queryObj).then(function (data) {
+        if (!data) {
+            return res.jsonp({
+                success: false,
+                message: "NO_USERS_FOUND"
+            });
+        } else {
+            return res.jsonp({
+                results: data.rows,
+                total: data.count,
+                maxResults: maxResults
+            });
+        }
     }).catch(function (err) {
         return res.status(400).json({success: false, err: err});
     });
 };
 
 exports.createTeacher = function (req, res) {
-    db.Teacher.create({name: req.body.name, DisciplineId: req.body.DisciplineId}).then(function (obj) {
+    db.Teacher.create({name: req.body.name}).then(function (obj) {
         if (obj)
             return res.status(200).json({success: true});
         else
