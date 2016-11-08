@@ -9,7 +9,7 @@ angular.module('gdaApp').controller('DisciplineController',
 
             $scope.create = function () {
                 $scope.dialog = ngDialog.open({
-                    template: 'public/views/discipline_edit.view.hmtl',
+                    template: 'public/views/discipline_edit.view.html',
                     controller: 'DisciplineEditController',
                     scope: $scope,
                     resolve: {
@@ -24,7 +24,7 @@ angular.module('gdaApp').controller('DisciplineController',
 
             $scope.edit = function (obj) {
                 $scope.dialog = ngDialog.open({
-                    template: 'public/views/discipline_edit.view.hmtl',
+                    template: 'public/views/discipline_edit.view.html',
                     controller: 'DisciplineEditController',
                     scope: $scope,
                     resolve: {
