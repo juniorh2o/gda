@@ -71,10 +71,10 @@ exports.getClass = function (req, res) {
 
 exports.createClass = function (req, res) {
     db.Class.create({
-        name: req.body.name,
+        abrev: req.body.abrev,
         level: req.body.level,
-        DisciplineId: req.body.DisciplineId,
-        TeacherId: req.body.TeacherId
+        DisciplineId: req.body.Discipline.id,
+        TeacherId: req.body.Teacher.id
     }).then(function (obj) {
         if (obj)
             return res.status(200).json({success: true});

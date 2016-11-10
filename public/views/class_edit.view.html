@@ -23,11 +23,11 @@
                    placeholder="Semestre"/>
 
             <div class="dialog-form-title">Disciplina:</div>
-            <select ng-model="class.Discipline"
+            <select ng-model="class.Discipline" required
                     ng-options="discipline.name for discipline in disciplineList track by discipline.id"> </select>
 
             <div class="dialog-form-title">Professor:</div>
-            <select ng-model="class.Teacher"
+            <select ng-model="class.Teacher" required
                     ng-options="teacher.name for teacher in teacherList track by teacher.id"> </select>
             <br/>
             <button type="submit" class="generic-button" ng-click="submit()">Enviar</button>
