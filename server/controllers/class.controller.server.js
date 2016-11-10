@@ -65,6 +65,7 @@ exports.getClass = function (req, res) {
             });
         }
     }).catch(function (err) {
+        console.log(err);
         return res.status(400).json({success: false, err: err});
     });
 };
@@ -76,8 +77,17 @@ exports.createClass = function (req, res) {
         DisciplineId: req.body.Discipline.id,
         TeacherId: req.body.Teacher.id
     }).then(function (obj) {
-        if (obj)
-            return res.status(200).json({success: true});
+        if (obj) {
+            for (var x = 0; x < req.body.classStudent.length; x++)
+                req.body.classStudent[x] = {StudentId: req.body.classStudent[x], ClassId: obj.id};
+
+            db.StudentClass.bulkCreate(req.body.classStudent).then(function (rules) {
+                return res.status(200).json({success: true});
+            }).catch(function (err) {
+                console.log(err);
+                return res.status(400).json({success: false, err: err});
+            });
+        }
         else
             return res.status(400).json({success: false, err: "no object created"});
     }).catch(function (err) {
@@ -107,7 +117,21 @@ exports.editClass = function (req, res) {
             obj.TeacherId = req.body.Teacher.id;
 
             obj.save().then(function (objSaved) {
-                return res.status(200).json({success: true});
+                db.StudentClass.destroy({
+                    where: {ClassId: objSaved.id}
+                }).then(function (rowaffected) {
+                    for (var x = 0; x < req.body.classStudent.length; x++)
+                        req.body.classStudent[x] = {StudentId: req.body.classStudent[x], ClassId: req.body.id};
+
+                    db.StudentClass.bulkCreate(req.body.classStudent).then(function (rules) {
+                        return res.status(200).json({success: true});
+                    }).catch(function (err) {
+                        console.log(err);
+                        return res.status(400).json({success: false, err: err});
+                    });
+                }).catch(function (err) {
+                    return res.status(400).json({success: false, err: err});
+                });
             }).catch(function (err) {
                 return res.status(400).json({success: false, err: "failed to save the edited object"});
             });
@@ -115,6 +139,23 @@ exports.editClass = function (req, res) {
         else
             return res.status(400).json({success: false, err: "no object found to edit"});
 
+    }).catch(function (err) {
+        return res.status(400).json({success: false, err: err});
+    });
+};
+
+exports.getClassStudents = function (req, res) {
+    db.StudentClass.findAll({where: {ClassId: req.params.ClassId}}).then(function (data) {
+        if (!data) {
+            return res.jsonp({
+                success: false,
+                message: "NO_USERS_FOUND"
+            });
+        } else {
+            return res.jsonp({
+                results: data
+            });
+        }
     }).catch(function (err) {
         return res.status(400).json({success: false, err: err});
     });

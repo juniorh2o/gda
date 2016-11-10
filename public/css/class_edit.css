@@ -1,0 +1,11 @@
+.student {
+    background: #d80101;
+    width: 80%;
+    margin: auto;
+    border: 1px solid;
+    border-top: none;
+}
+
+.student-selected {
+    background: #13a013;
+}

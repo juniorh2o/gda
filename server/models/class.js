@@ -15,11 +15,7 @@ module.exports = function (conn, Sequelize) {
             obj.belongsTo(models.Discipline);
             obj.belongsTo(models.Teacher);
 
-            obj.belongsToMany(models.Student, {
-                as: 'StudentClass',
-                through: 'student_class',
-                timestamps: false
-            });
+            obj.hasMany(models.StudentClass);
 
             obj.hasMany(models.Test);
         }

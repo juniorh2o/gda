@@ -29,6 +29,13 @@
             <div class="dialog-form-title">Professor:</div>
             <select ng-model="class.Teacher" required
                     ng-options="teacher.name for teacher in teacherList track by teacher.id"> </select>
+
+
+            <div class="dialog-form-title">Alunos:</div>
+            <div class="student pointer" ng-repeat="student in studentList"
+                 ng-class="{'student-selected':(student.selected)}" ng-click="student.selected=!student.selected">
+                {{student.name}}
+            </div>
             <br/>
             <button type="submit" class="generic-button" ng-click="submit()">Enviar</button>
         </form>

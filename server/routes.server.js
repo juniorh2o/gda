@@ -8,6 +8,7 @@ var testCtrl = require('./controllers/test.controller.server.js');
 exports.init = function (app) {
     app.get('/api/class/get', classCtrl.getClass);
     app.get('/api/class/getAll', classCtrl.getClassAll);
+    app.get('/api/class/getStudents/:ClassId', classCtrl.getClassStudents);
     app.post('/api/class/create', classCtrl.createClass);
     app.post('/api/class/delete', classCtrl.deleteClass);
     app.post('/api/class/edit', classCtrl.editClass);

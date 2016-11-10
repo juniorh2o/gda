@@ -26,6 +26,9 @@ angular.module('gdaApp').controller('ClassController',
                         },
                         studentList: function ($http) {
                             return $http.get('/api/student/getAll');
+                        },
+                        classStudentList: function () {
+                            return [];
                         }
                     }
                 });
@@ -46,7 +49,14 @@ angular.module('gdaApp').controller('ClassController',
                         },
                         teacherList: function ($http) {
                             return $http.get('/api/teacher/getAll');
+                        },
+                        studentList: function ($http) {
+                            return $http.get('/api/student/getAll');
+                        },
+                        classStudentList: function ($http) {
+                            return $http.get('/api/class/getStudents/' + obj.id);
                         }
+
                     }
                 });
             };
