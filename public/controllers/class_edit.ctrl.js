@@ -1,9 +1,10 @@
 angular.module('gdaApp').controller('ClassEditController',
-    ['$scope', 'class', '$http', 'disciplineList', 'teacherList',
-        function ($scope, classProv, $http, disciplineList, teacherList) {
+    ['$scope', 'class', '$http', 'disciplineList', 'teacherList', 'studentList',
+        function ($scope, classProv, $http, disciplineList, teacherList, studentList) {
             $scope.class = classProv;
             $scope.disciplineList = disciplineList.data.results;
             $scope.teacherList = teacherList.data.results;
+            $scope.studentList = studentList.data.results;
             $scope.ola = 1;
             $scope.close = function () {
                 $scope.dialog.close();

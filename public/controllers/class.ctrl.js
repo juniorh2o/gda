@@ -23,6 +23,9 @@ angular.module('gdaApp').controller('ClassController',
                         },
                         teacherList: function ($http) {
                             return $http.get('/api/teacher/getAll');
+                        },
+                        studentList: function ($http) {
+                            return $http.get('/api/student/getAll');
                         }
                     }
                 });
