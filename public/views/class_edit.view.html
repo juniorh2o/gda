@@ -6,17 +6,30 @@
     </div>
     <div class="dialog-edit-content">
         <form name="form" novalidate autocomplete="on">
-            <button type="button" class="generic-button delete-button" ng-click="delete()" ng-show="discipline.id">Delete</button>
-            <div class="dialog-form-title" ng-show="discipline.id">ID:</div>
+            <button type="button" class="generic-button delete-button" ng-click="delete()" ng-show="class.id">Delete
+            </button>
+            <div class="dialog-form-title" ng-show="class.id">ID:</div>
             <div class="dialog-form-input-readonly-box">
                 <input class="dialog-form-input dialog-form-input-readonly" required name="id" readonly type="text"
-                       data-ng-model="discipline.id"
-                       ng-show="discipline.id"/>
+                       data-ng-model="class.id"
+                       ng-show="class.id"/>
             </div>
-            <div class="dialog-form-title">Nome:</div>
-            <input class="dialog-form-input" required name="name" type="text" data-ng-model="discipline.name"
-                   placeholder="Nome"/>
+            <div class="dialog-form-title">Abrev:</div>
+            <input class="dialog-form-input" required name="abrev" type="text" data-ng-model="class.abrev"
+                   placeholder="Abrev"/>
 
+            <div class="dialog-form-title">Semestre:</div>
+            <input class="dialog-form-input" required name="level" type="text" data-ng-model="class.level"
+                   placeholder="Semestre"/>
+
+            <div class="dialog-form-title">Disciplina:</div>
+            <select ng-model="class.Discipline"
+                    ng-options="discipline.name for discipline in disciplineList track by discipline.id"> </select>
+
+            <div class="dialog-form-title">Professor:</div>
+            <select ng-model="class.Teacher"
+                    ng-options="teacher.name for teacher in teacherList track by teacher.id"> </select>
+            <br/>
             <button type="submit" class="generic-button" ng-click="submit()">Enviar</button>
         </form>
     </div>

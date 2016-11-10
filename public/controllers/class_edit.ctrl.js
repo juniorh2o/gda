@@ -1,15 +1,17 @@
 angular.module('gdaApp').controller('ClassEditController',
-    ['$scope', 'discipline', '$http',
-        function ($scope, discipline, $http) {
-            $scope.discipline = discipline;
-
+    ['$scope', 'class', '$http', 'disciplineList', 'teacherList',
+        function ($scope, classProv, $http, disciplineList, teacherList) {
+            $scope.class = classProv;
+            $scope.disciplineList = disciplineList.data.results;
+            $scope.teacherList = teacherList.data.results;
+            $scope.ola = 1;
             $scope.close = function () {
                 $scope.dialog.close();
             };
 
             $scope.submit = function () {
-                var url = $scope.discipline.id ? '/api/discipline/edit' : '/api/discipline/create';
-                $http.post(url, $scope.discipline).success(function (res) {
+                var url = $scope.class.id ? '/api/class/edit' : '/api/class/create';
+                $http.post(url, $scope.class).success(function (res) {
                     $scope.onPageChanged();
                     $scope.dialog.close();
                 }).error(function (err) {
@@ -19,7 +21,7 @@ angular.module('gdaApp').controller('ClassEditController',
             };
 
             $scope.delete = function () {
-                $http.post('/api/discipline/delete', $scope.discipline).success(function (res) {
+                $http.post('/api/class/delete', $scope.class).success(function (res) {
                     $scope.onPageChanged();
                     $scope.dialog.close();
                 }).error(function (err) {
@@ -29,4 +31,5 @@ angular.module('gdaApp').controller('ClassEditController',
             };
         }
     ]
-);
+)
+;

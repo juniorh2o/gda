@@ -1,17 +1,40 @@
 var db = require("./../connection");
 
+exports.getClassAll = function (req, res) {
+    var queryObj = {
+        include: [db.Discipline, db.Teacher]
+    };
+
+    db.Class.findAll(queryObj).then(function (data) {
+        if (!data) {
+            return res.jsonp({
+                success: false,
+                message: "NO_USERS_FOUND"
+            });
+        } else {
+            return res.jsonp({
+                results: data.rows,
+                total: data.count,
+                maxResults: maxResults
+            });
+        }
+    }).catch(function (err) {
+        return res.status(400).json({success: false, err: err});
+    });
+};
+
 exports.getClass = function (req, res) {
     var params = req.query;
     var maxResults = 10;
     var offset = params.page ? --params.page * maxResults : 0;
-    var sort = params.sort ? params.sort : 'totalCameras';
+    var sort = params.sort ? params.sort : 'id';
     var order = params.order ? params.order : 'desc';
 
     var queryObj = {
         limit: maxResults,
         offset: offset,
-        order: sort + " " + order + ', name asc',
-        raw: true
+        order: sort + " " + order + ', Class.abrev asc',
+        include: [db.Discipline, db.Teacher]
     };
 
     if (params.filter && typeof params.filter == "string") {
@@ -80,6 +103,8 @@ exports.editClass = function (req, res) {
         if (obj) {
             obj.name = req.body.name;
             obj.level = req.body.level;
+            obj.DisciplineId = req.body.Discipline.id;
+            obj.TeacherId = req.body.Teacher.id;
 
             obj.save().then(function (objSaved) {
                 return res.status(200).json({success: true});

@@ -5,7 +5,7 @@ angular.module('gdaApp').controller('GenericController', ['scope', '$http', func
     $scope.maxSize = 1;
     $scope.numPagesToShow = 5;
     $scope.lockPagination = true;
-    $scope.sort = "totalCameras";
+    $scope.sort = "id";
     $scope.order = "desc";
     $scope.filter = "";
     $scope.lastFilterUsed = undefined;

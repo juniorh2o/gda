@@ -16,7 +16,6 @@ html, body {
     clear: both;
 }
 
-
 /*Form*/
 input {
     width: 300px;
@@ -57,12 +56,14 @@ input.ng-dirty.ng-invalid, textarea.ng-dirty.ng-invalid {
     font-size: 16px;
     line-height: 35px;
     cursor: pointer;
+    margin: 20px 10px 0 10px;
 }
 
 .delete-button {
-    float:right;
-    background:#662222;
-    width:75px;
+    margin: 0;
+    float: right;
+    background: #662222;
+    width: 75px;
 }
 
 /*Dialog*/
@@ -113,10 +114,12 @@ input.ng-dirty.ng-invalid, textarea.ng-dirty.ng-invalid {
 }
 
 .dialog-edit-content {
+    overflow: auto;
     width: 400px;
     height: 400px;
     padding: 10px;
     background: #FFF;
+    border-radius: 0 0 5px 5px;
 }
 
 .dialog-close {

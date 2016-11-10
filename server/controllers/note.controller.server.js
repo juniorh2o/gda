@@ -1,5 +1,12 @@
 var db = require("./../connection");
 
+exports.getNoteAll = function (req, res) {
+    db.Note.findAll({}).then(function (data) {
+        return res.status(200).json({success: true, data: data});
+    }).catch(function (err) {
+        return res.status(400).json({success: false, err: err});
+    });
+};
 exports.getNote = function (req, res) {
     db.Note.findAll({}).then(function (data) {
         return res.status(200).json({success: true, data: data});

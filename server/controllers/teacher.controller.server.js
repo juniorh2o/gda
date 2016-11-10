@@ -1,10 +1,31 @@
 var db = require("./../connection");
 
+exports.getTeacherAll = function (req, res) {
+    var queryObj = {
+        raw: true
+    };
+
+    db.Teacher.findAll(queryObj).then(function (data) {
+        if (!data) {
+            return res.jsonp({
+                success: false,
+                message: "NO_USERS_FOUND"
+            });
+        } else {
+            return res.jsonp({
+                results: data
+            });
+        }
+    }).catch(function (err) {
+        return res.status(400).json({success: false, err: err});
+    });
+};
+
 exports.getTeacher = function (req, res) {
     var params = req.query;
     var maxResults = 10;
     var offset = params.page ? --params.page * maxResults : 0;
-    var sort = params.sort ? params.sort : 'totalCameras';
+    var sort = params.sort ? params.sort : 'id';
     var order = params.order ? params.order : 'desc';
 
     var queryObj = {
