@@ -96,13 +96,16 @@ exports.createClass = function (req, res) {
 };
 
 exports.deleteClass = function (req, res) {
-    db.Class.destroy({
-        where: {id: req.body.id}
+    db.StudentClass.destroy({
+        where: {ClassId: req.body.id}
     }).then(function (rowaffected) {
-        if (rowaffected)
+        db.Class.destroy({
+            where: {id: req.body.id}
+        }).then(function (rowaffected) {
             return res.status(200).json({success: true});
-        else
-            return res.status(400).json({success: false, err: "no object deleted"});
+        }).catch(function (err) {
+            return res.status(400).json({success: false, err: err});
+        });
     }).catch(function (err) {
         return res.status(400).json({success: false, err: err});
     });
