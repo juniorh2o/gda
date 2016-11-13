@@ -17,6 +17,9 @@ angular.module('gdaApp').controller('TestController',
                             return {
                                 "id": null
                             };
+                        },
+                        classList: function ($http) {
+                            return $http.get('/api/class/getAll');
                         }
                     }
                 });
@@ -31,6 +34,9 @@ angular.module('gdaApp').controller('TestController',
                         test: function ($filter) {
                             //return $filter('getByProperty')('id', obj.id, $scope.gridResults);
                             return obj;
+                        },
+                        classList: function ($http) {
+                            return $http.get('/api/class/getAll');
                         }
                     }
                 });
