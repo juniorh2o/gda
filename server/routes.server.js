@@ -26,11 +26,7 @@ exports.init = function (app) {
     app.post('/api/student/delete', studentCtrl.deleteStudent);
     app.post('/api/student/edit', studentCtrl.editStudent);
 
-    app.get('/api/note/get', noteCtrl.getNote);
-    app.get('/api/note/getAll', noteCtrl.getNoteAll);
-    app.post('/api/note/create', noteCtrl.createNote);
-    app.post('/api/note/delete', noteCtrl.deleteNote);
-    app.post('/api/note/edit', noteCtrl.editNote);
+    app.get('/api/note/getNotes/:TestId', noteCtrl.getNotes);
 
     app.get('/api/teacher/get', teacherCtrl.getTeacher);
     app.get('/api/teacher/getAll', teacherCtrl.getTeacherAll);

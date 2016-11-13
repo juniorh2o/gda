@@ -6,7 +6,8 @@
     </div>
     <div class="dialog-edit-content">
         <form name="form" novalidate autocomplete="on">
-            <button type="button" class="generic-button delete-button" ng-click="delete()" ng-show="test.id">Delete</button>
+            <button type="button" class="generic-button delete-button" ng-click="delete()" ng-show="test.id">Delete
+            </button>
             <div class="dialog-form-title" ng-show="test.id">ID:</div>
             <div class="dialog-form-input-readonly-box">
                 <input class="dialog-form-input dialog-form-input-readonly" required name="id" readonly type="text"
@@ -19,10 +20,19 @@
 
             <div class="dialog-form-title">Turma:</div>
             <select ng-model="test.Class" required ng-click="studentList = class.studentClass"
-                    ng-options="class.abrev for class in classList track by class.id"> </select>
-
+                    ng-options="class.abrev for class in classList track by class.id"
+                    ng-change="noteList=[]"></select>
             <br/>
 
+            <div class="dialog-form-title">Notas:</div>
+            <table class="noteBlock">
+                <tr class="pointer" ng-repeat="note in noteList">
+                    <td class="noteName">
+                        {{note.Student.name}}:
+                    <td/>
+                    <td class="noteValue"><input type="number" class="noteValueInput" ng-model="note.note"/></td>
+                </tr>
+            </table>
             <button type="submit" class="generic-button" ng-click="submit()">Enviar</button>
         </form>
     </div>

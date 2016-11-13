@@ -20,6 +20,9 @@ angular.module('gdaApp').controller('TestController',
                         },
                         classList: function ($http) {
                             return $http.get('/api/class/getAll');
+                        },
+                        noteList: function () {
+                            return [];
                         }
                     }
                 });
@@ -37,6 +40,9 @@ angular.module('gdaApp').controller('TestController',
                         },
                         classList: function ($http) {
                             return $http.get('/api/class/getAll');
+                        },
+                        noteList: function ($http) {
+                            return $http.get('/api/note/getNotes/' + obj.id);
                         }
                     }
                 });

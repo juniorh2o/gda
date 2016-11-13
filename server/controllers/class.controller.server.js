@@ -98,10 +98,22 @@ exports.deleteClass = function (req, res) {
     db.StudentClass.destroy({
         where: {ClassId: req.body.id}
     }).then(function (rowaffected) {
-        db.Class.destroy({
-            where: {id: req.body.id}
+        db.Test.destroy({
+            where: {ClassId: req.body.id}
         }).then(function (rowaffected) {
-            return res.status(200).json({success: true});
+            db.Class.destroy({
+                where: {id: req.body.id}
+            }).then(function (rowaffected) {
+                db.Note.destroy({
+                    where: {TestId: null}
+                }).then(function (rowaffected) {
+                    return res.status(200).json({success: true});
+                }).catch(function (err) {
+                    return res.status(400).json({success: false, err: err});
+                });
+            }).catch(function (err) {
+                return res.status(400).json({success: false, err: err});
+            });
         }).catch(function (err) {
             return res.status(400).json({success: false, err: err});
         });
@@ -125,8 +137,11 @@ exports.editClass = function (req, res) {
                     for (var x = 0; x < req.body.classStudent.length; x++)
                         req.body.classStudent[x] = {StudentId: req.body.classStudent[x], ClassId: req.body.id};
 
-                    db.StudentClass.bulkCreate(req.body.classStudent).then(function (rules) {
-                        return res.status(200).json({success: true});
+                    db.StudentClass.bulkCreate(req.body.classStudent).then(function (result) {
+                        var studentList = [];
+                        for (x = 0; x < result.length; x++) {
+                            studentList.push(result[x].StudentId);
+                        }
                     }).catch(function (err) {
                         console.log(err);
                         return res.status(400).json({success: false, err: err});

@@ -1,7 +1,7 @@
 module.exports = function (conn, Sequelize) {
     var obj = conn.define('Note', {
         note: {
-            type: Sequelize.STRING,
+            type: Sequelize.FLOAT,
             allowNull: false
         }
     }, {
