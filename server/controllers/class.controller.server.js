@@ -2,7 +2,7 @@ var db = require("./../connection");
 
 exports.getClassAll = function (req, res) {
     var queryObj = {
-        include: [db.Discipline, db.Teacher]
+        include: [db.Discipline, db.Teacher, {model: db.StudentClass, include: [db.Student]}]
     };
 
     db.Class.findAll(queryObj).then(function (data) {
@@ -13,12 +13,11 @@ exports.getClassAll = function (req, res) {
             });
         } else {
             return res.jsonp({
-                results: data.rows,
-                total: data.count,
-                maxResults: maxResults
+                results: data
             });
         }
     }).catch(function (err) {
+        console.log(err);
         return res.status(400).json({success: false, err: err});
     });
 };

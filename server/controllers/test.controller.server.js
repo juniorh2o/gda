@@ -32,7 +32,7 @@ exports.getTest = function (req, res) {
         limit: maxResults,
         offset: offset,
         order: sort + " " + order + ', name asc',
-        raw: true
+        include: [db.Class]
     };
 
     if (params.filter && typeof params.filter == "string") {
@@ -68,9 +68,11 @@ exports.getTest = function (req, res) {
 };
 
 exports.createTest = function (req, res) {
+    console.log(req.body.Class);
+    console.log(req.body.ClassId);
     db.Test.create({
         name: req.body.name,
-        ClassId: req.body.ClassId
+        ClassId: req.body.Class.id
     }).then(function (obj) {
         if (obj)
             return res.status(200).json({success: true});
