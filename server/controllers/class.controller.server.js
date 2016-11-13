@@ -125,7 +125,7 @@ exports.deleteClass = function (req, res) {
 exports.editClass = function (req, res) {
     db.Class.find({where: {id: req.body.id}}).then(function (obj) {
         if (obj) {
-            obj.name = req.body.name;
+            obj.abrev = req.body.abrev;
             obj.level = req.body.level;
             obj.DisciplineId = req.body.Discipline.id;
             obj.TeacherId = req.body.Teacher.id;
@@ -138,10 +138,7 @@ exports.editClass = function (req, res) {
                         req.body.classStudent[x] = {StudentId: req.body.classStudent[x], ClassId: req.body.id};
 
                     db.StudentClass.bulkCreate(req.body.classStudent).then(function (result) {
-                        var studentList = [];
-                        for (x = 0; x < result.length; x++) {
-                            studentList.push(result[x].StudentId);
-                        }
+                        return res.status(200).json({success: true});
                     }).catch(function (err) {
                         console.log(err);
                         return res.status(400).json({success: false, err: err});

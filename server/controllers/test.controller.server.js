@@ -1,26 +1,5 @@
 var db = require("./../connection");
 
-exports.getTestAll = function (req, res) {
-    var queryObj = {
-        raw: true
-    };
-
-    db.Test.findAll(queryObj).then(function (data) {
-        if (!data) {
-            return res.jsonp({
-                success: false,
-                message: "NO_USERS_FOUND"
-            });
-        } else {
-            return res.jsonp({
-                results: data
-            });
-        }
-    }).catch(function (err) {
-        return res.status(400).json({success: false, err: err});
-    });
-};
-
 exports.getTest = function (req, res) {
     var params = req.query;
     var maxResults = 10;

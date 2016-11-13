@@ -35,7 +35,6 @@ exports.init = function (app) {
     app.post('/api/teacher/edit', teacherCtrl.editTeacher);
 
     app.get('/api/test/get', testCtrl.getTest);
-    app.get('/api/test/getAll', testCtrl.getTestAll);
     app.post('/api/test/create', testCtrl.createTest);
     app.post('/api/test/delete', testCtrl.deleteTest);
     app.post('/api/test/edit', testCtrl.editTest);
