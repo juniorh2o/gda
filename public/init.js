@@ -28,11 +28,6 @@ angular.module('gdaApp', ['ui.router', 'ngDialog', 'ui.bootstrap','chart.js'])
                             templateUrl: 'public/views/main.view.html',
                             controller: 'MainController'
                         }
-                    },
-                    resolve: {
-                        graphList: function ($http) {
-                            return $http.get('/api/graph/list');
-                        }
                     }
                 }).state({
                 name: "home.class",

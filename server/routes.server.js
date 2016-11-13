@@ -8,6 +8,7 @@ var testCtrl = require('./controllers/test.controller.server.js');
 
 exports.init = function (app) {
     app.get('/api/graph/list', mainCtrl.getGraphList);
+    app.post('/api/graph/getData', mainCtrl.getGraphData);
 
     app.get('/api/class/get', classCtrl.getClass);
     app.get('/api/class/getAll', classCtrl.getClassAll);
