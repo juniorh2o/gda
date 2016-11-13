@@ -1,3 +1,4 @@
+var mainCtrl = require('./controllers/main.controller.server.js');
 var classCtrl = require('./controllers/class.controller.server.js');
 var disciplineCtrl = require('./controllers/discipline.controller.server.js');
 var noteCtrl = require('./controllers/note.controller.server');
@@ -6,6 +7,8 @@ var teacherCtrl = require('./controllers/teacher.controller.server');
 var testCtrl = require('./controllers/test.controller.server.js');
 
 exports.init = function (app) {
+    app.get('/api/graph/list', mainCtrl.getGraphList);
+
     app.get('/api/class/get', classCtrl.getClass);
     app.get('/api/class/getAll', classCtrl.getClassAll);
     app.get('/api/class/getStudents/:ClassId', classCtrl.getClassStudents);
