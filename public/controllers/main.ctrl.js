@@ -31,7 +31,7 @@ angular.module('gdaApp').controller('MainController',
                     $scope.title = res.title;
 
                     if (appendText != "")
-                        $scope.title += " - " + appendText;
+                        $scope.title += " > " + appendText;
                 }).error(function (err) {
                     console.error(err);
                 });
