@@ -1,6 +1,8 @@
 angular.module('gdaApp').controller('MainController',
     ['$scope', '$http',
         function ($scope, $http) {
+            $scope.title = "";
+
             $http.get('/api/graph/list').success(function (res) {
                 $scope.graphList = res;
             }).error(function (err) {
@@ -15,17 +17,21 @@ angular.module('gdaApp').controller('MainController',
                     yAxes: [{
                         ticks: {
                             max: 10,
-                            min:0
+                            min: 0
                         }
                     }]
                 }
             };
 
-            function changeData(content) {
+            function changeData(content, appendText) {
                 $http.post('/api/graph/getData', content).success(function (res) {
                     console.log(res);
                     $scope.labels = res.labels;
                     $scope.data = res.data;
+                    $scope.title = res.title;
+
+                    if (appendText != "")
+                        $scope.title += " - " + appendText;
                 }).error(function (err) {
                     console.error(err);
                 });
@@ -33,11 +39,17 @@ angular.module('gdaApp').controller('MainController',
 
             $scope.changeSelectedOption = function (menu, option) {
                 $scope.selectedMenu = menu;
-                $scope.selectedOption = option;
-                changeData({option: menu, id: option});
+                $scope.selectedOption = option.id;
+
+                var appendText = "";
+
+                if ($scope.selectedOption != 0)
+                    appendText = option.name || option.abrev;
+
+                changeData({option: menu, id: option.id}, appendText);
             };
 
-            changeData({option: 'discipline', id: 0});
+            changeData({option: 'discipline', id: 0}, "");
         }
     ]
 );

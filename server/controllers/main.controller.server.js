@@ -39,7 +39,9 @@ exports.getGraphData = function (req, res) {
     var valueList = [];
     var fieldList = [];
     var query = '';
+    var title = "";
     if (req.body.option == 'discipline') {
+        title += "Disciplinas";
         if (req.body.id == 0) {
             query = `
             SELECT 
@@ -79,6 +81,7 @@ exports.getGraphData = function (req, res) {
     }
 
     if (req.body.option == 'teacher') {
+        title += "Professores";
         if (req.body.id == 0) {
             query = `
             SELECT 
@@ -119,6 +122,7 @@ exports.getGraphData = function (req, res) {
     }
 
     if (req.body.option == 'student') {
+        title += "Estudantes";
         if (req.body.id == 0) {
             query = `
             SELECT 
@@ -154,6 +158,7 @@ exports.getGraphData = function (req, res) {
     }
 
     if (req.body.option == 'class') {
+        title += "Turmas";
         if (req.body.id == 0) {
             query = `
             SELECT 
@@ -192,6 +197,7 @@ exports.getGraphData = function (req, res) {
     }
 
     if (req.body.option == 'test') {
+        title += "Avaliações";
         if (req.body.id == 0) {
             query = `
             SELECT 
@@ -235,7 +241,7 @@ exports.getGraphData = function (req, res) {
             fieldList.push(queryRes[0][x].label);
             valueList.push(queryRes[0][x].amount);
         }
-        res.status(200).json({labels: fieldList, data: valueList});
+        res.status(200).json({labels: fieldList, data: valueList, title: title});
 
     }).catch(function (err) {
         return res.status(400).json({success: false, err: err});
