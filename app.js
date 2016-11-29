@@ -16,6 +16,7 @@ app.set('view engine', 'html');
 app.use('/public', express.static('./public'));
 
 app.use('/bower_components', express.static('./bower_components'));
+app.use('/node_modules', express.static('./node_modules'));
 
 require('./server/routes.server').init(app);
 

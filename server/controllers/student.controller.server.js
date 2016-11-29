@@ -1,10 +1,30 @@
 var db = require("./../connection");
 
+exports.getStudentAll = function (req, res) {
+    var queryObj = {
+        raw: true
+    };
+
+    db.Student.findAll(queryObj).then(function (data) {
+        if (!data) {
+            return res.jsonp({
+                success: false,
+                message: "NO_USERS_FOUND"
+            });
+        } else {
+            return res.jsonp({
+                results: data
+            });
+        }
+    }).catch(function (err) {
+        return res.status(400).json({success: false, err: err});
+    });
+};
 exports.getStudent = function (req, res) {
     var params = req.query;
     var maxResults = 10;
     var offset = params.page ? --params.page * maxResults : 0;
-    var sort = params.sort ? params.sort : 'totalCameras';
+    var sort = params.sort ? params.sort : 'id';
     var order = params.order ? params.order : 'desc';
 
     var queryObj = {
@@ -58,13 +78,16 @@ exports.createStudent = function (req, res) {
 };
 
 exports.deleteStudent = function (req, res) {
-    db.Student.destroy({
-        where: {id: req.body.id}
+    db.StudentClass.destroy({
+        where: {StudentId: req.body.id}
     }).then(function (rowaffected) {
-        if (rowaffected)
+        db.Student.destroy({
+            where: {id: req.body.id}
+        }).then(function (rowaffected) {
             return res.status(200).json({success: true});
-        else
-            return res.status(400).json({success: false, err: "no object deleted"});
+        }).catch(function (err) {
+            return res.status(400).json({success: false, err: err});
+        });
     }).catch(function (err) {
         return res.status(400).json({success: false, err: err});
     });

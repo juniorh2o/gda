@@ -8,11 +8,7 @@ module.exports = function (conn, Sequelize) {
         tableName: 'student',
         timestamps: false,
         associate: function (models) {
-            obj.belongsToMany(models.Student, {
-                as: 'StudentClass',
-                through: 'student_class',
-                timestamps: false
-            });
+            obj.hasMany(models.StudentClass);
 
             obj.hasMany(models.Note);
         }

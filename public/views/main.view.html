@@ -1,1 +1,72 @@
-main
+<div class="main-menu">
+    <div class="main-menu-itemBoxer"
+         ng-click="changeSelectedOption('discipline',{id:0})"
+         ng-class="{'selected':(selectedMenu=='discipline')}">
+        Disciplinas
+    </div>
+
+    <div class="main-menu-item"
+         ng-repeat="discipline in graphList.Discipline"
+         ng-click="changeSelectedOption('discipline',discipline);"
+         ng-class="{'selected':(selectedOption==discipline.id && selectedMenu=='discipline')}">
+        {{ discipline.name }}
+    </div>
+
+    <div class="main-menu-itemBoxer"
+         ng-click="changeSelectedOption('teacher',{id:0})"
+         ng-class="{'selected':(selectedMenu=='teacher')}">
+        Professores
+    </div>
+
+    <div class="main-menu-item"
+         ng-repeat="teacher in graphList.Teacher"
+         ng-click="changeSelectedOption('teacher',teacher);"
+         ng-class="{'selected':(selectedOption==teacher.id && selectedMenu=='teacher')}">
+        {{ teacher.name }}
+    </div>
+
+    <div class="main-menu-itemBoxer"
+         ng-click="changeSelectedOption('student',{id:0})"
+         ng-class="{'selected':(selectedMenu=='student')}">
+        Estudantes
+    </div>
+
+    <div class="main-menu-item"
+         ng-repeat="student in graphList.Student"
+         ng-click="changeSelectedOption('student',student);"
+         ng-class="{'selected':(selectedOption==student.id && selectedMenu=='student')}">
+        {{ student.name }}
+    </div>
+
+    <div class="main-menu-itemBoxer"
+         ng-click="changeSelectedOption('class',{id:0})"
+         ng-class="{'selected':(selectedMenu=='class')}">
+        Turmas
+    </div>
+
+    <div class="main-menu-item"
+         ng-repeat="class in graphList.Class"
+         ng-click="changeSelectedOption('class',class);"
+         ng-class="{'selected':(selectedOption==class.id && selectedMenu=='class')}">
+        {{ class.abrev }}
+    </div>
+
+    <div class="main-menu-itemBoxer"
+         ng-click="changeSelectedOption('test',{id:0})"
+         ng-class="{'selected':(selectedMenu=='test')}">
+        Avaliaçoes
+    </div>
+
+    <div class="main-menu-item"
+         ng-repeat="test in graphList.Test"
+         ng-click="changeSelectedOption('test',test);"
+         ng-class="{'selected':(selectedOption==test.id && selectedMenu=='test' )}">
+        {{ test.name }}
+    </div>
+
+</div>
+<div class="main-content">
+    <span class="main-content-title">Gráficos > {{ title }}</span>
+    <canvas class="chart chart-bar ng-isolate-scope" chart-data="data" chart-labels="labels"
+            chart-series="series" chart-options="options" height="40px" width="100%"></canvas>
+</div>

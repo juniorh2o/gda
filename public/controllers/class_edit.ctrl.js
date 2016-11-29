@@ -1,15 +1,33 @@
 angular.module('gdaApp').controller('ClassEditController',
-    ['$scope', 'discipline', '$http',
-        function ($scope, discipline, $http) {
-            $scope.discipline = discipline;
+    ['$scope', 'class', '$http', 'disciplineList', 'teacherList', 'studentList', 'classStudentList',
+        function ($scope, classProv, $http, disciplineList, teacherList, studentList, classStudentList) {
+            $scope.class = classProv;
+            $scope.disciplineList = disciplineList.data.results;
+            $scope.teacherList = teacherList.data.results;
+            $scope.studentList = studentList.data.results;
 
+            if (classStudentList.data) {
+                $scope.class.classStudent = classStudentList.data.results;
+                angular.forEach($scope.studentList, function (student, i) {
+                    angular.forEach($scope.class.classStudent, function (classStudent, i) {
+                        if (classStudent.StudentId == student.id)
+                            student.selected = true;
+                    });
+                });
+            }
             $scope.close = function () {
                 $scope.dialog.close();
             };
 
             $scope.submit = function () {
-                var url = $scope.discipline.id ? '/api/discipline/edit' : '/api/discipline/create';
-                $http.post(url, $scope.discipline).success(function (res) {
+                $scope.class.classStudent = [];
+
+                angular.forEach($scope.studentList, function (student, i) {
+                    if (student.selected)
+                        $scope.class.classStudent.push(student.id);
+                });
+                var url = $scope.class.id ? '/api/class/edit' : '/api/class/create';
+                $http.post(url, $scope.class).success(function (res) {
                     $scope.onPageChanged();
                     $scope.dialog.close();
                 }).error(function (err) {
@@ -19,7 +37,7 @@ angular.module('gdaApp').controller('ClassEditController',
             };
 
             $scope.delete = function () {
-                $http.post('/api/discipline/delete', $scope.discipline).success(function (res) {
+                $http.post('/api/class/delete', $scope.class).success(function (res) {
                     $scope.onPageChanged();
                     $scope.dialog.close();
                 }).error(function (err) {
@@ -29,4 +47,5 @@ angular.module('gdaApp').controller('ClassEditController',
             };
         }
     ]
-);
+)
+;

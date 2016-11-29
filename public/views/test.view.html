@@ -37,6 +37,10 @@
                                 Name
                                 <i class="margin-left-5 fa {{ order === 'asc' ? 'fa-angle-down' : 'fa-angle-up' }} {{ sort !== 'whitelabel' ? 'fade' : '' }}"></i>
                             </th>
+                            <th class="can-order pointer" ng-click="setSort('class.abrev')">
+                                Class
+                                <i class="margin-left-5 fa {{ order === 'asc' ? 'fa-angle-down' : 'fa-angle-up' }} {{ sort !== 'whitelabel' ? 'fade' : '' }}"></i>
+                            </th>
 
                         </tr>
                         </thead>
@@ -48,6 +52,7 @@
                             </th>
                             <th scope="row" ng-bind="obj.id"></th>
                             <td ng-bind="obj.name"></td>
+                            <td ng-bind="obj.Class.abrev"></td>
                         </tr>
                         </tbody>
                     </table>

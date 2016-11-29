@@ -7,74 +7,36 @@
         <span class="icon-bar black"></span>
         <span class="icon-bar black"></span>
     </button>
-    <ul class="nav navbar-right navbar-top-links">
-        <li class="dropdown navbar-inverse dashboard-alert-menu">
-            <a class="dropdown-toggle pointer" data-toggle="dropdown">
-                <i class="fa fa-bell fa-fw"></i> <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu dropdown-alerts">
-                <li>
-                    <a class="pointer">
-                        <div>
-                            <i class="fa fa-comment fa-fw"></i> Content
-                            <span class="pull-right text-muted small">Time ago</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a class="text-center pointer">
-                        <strong>See All Alerts</strong>
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="dropdown">
-            <a class="dropdown-toggle pointer" data-toggle="dropdown">
-                <i class="fa fa-user fa-fw"></i> secondtruth <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu dropdown-user">
-                <li><a class="pointer"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                </li>
-                <li><a class="pointer"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                </li>
-                <li class="divider"></li>
-                <li><a class="pointer"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                </li>
-            </ul>
-        </li>
-    </ul>
     <div class="navbar-default sidebar">
         <div class="sidebar-nav navbar-collapse collapse">
             <ul class="nav">
                 <li ng-class="(currentState.name == 'home')?'active':'pointer'" ui-sref="home">
-                    <i class="fa fa-dashboard fa-2x"></i>
+                    <i class="fa fa-bar-chart fa-2x"></i>
                     <br/>
                     Estatísticas
                 </li>
                 <li ng-class="(currentState.name == 'home.discipline')?'active':'pointer'" ui-sref="home.discipline">
-                    <i class="fa fa-dashboard fa-2x"></i>
+                    <i class="fa fa-graduation-cap fa-2x"></i>
                     <br/>
                     Disciplinas
                 </li>
                 <li ng-class="(currentState.name == 'home.teacher')?'active':'pointer'" ui-sref="home.teacher">
-                    <i class="fa fa-dashboard fa-2x"></i>
+                    <i class="fa fa-address-book-o fa-2x"></i>
                     <br/>
                     Professores
                 </li>
                 <li ng-class="(currentState.name == 'home.class')?'active':'pointer'" ui-sref="home.class">
-                    <i class="fa fa-dashboard fa-2x"></i>
+                    <i class="fa fa-users fa-2x"></i>
                     <br/>
                     Turmas
                 </li>
                 <li ng-class="(currentState.name == 'home.student')?'active':'pointer'" ui-sref="home.student">
-                    <i class="fa fa-dashboard fa-2x"></i>
+                    <i class="fa fa-address-card-o fa-2x"></i>
                     <br/>
                     Estudantes
                 </li>
                 <li ng-class="(currentState.name == 'home.test')?'active':'pointer'" ui-sref="home.test">
-                    <i class="fa fa-dashboard fa-2x"></i>
+                    <i class="fa fa-file-text-o fa-2x"></i>
                     <br/>
                     Avaliações
                 </li>

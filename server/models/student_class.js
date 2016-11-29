@@ -1,15 +1,11 @@
 module.exports = function (conn, Sequelize) {
-    var obj = conn.define('Note', {
-        note: {
-            type: Sequelize.FLOAT,
-            allowNull: false
-        }
+    var obj = conn.define('StudentClass', {
     }, {
-        tableName: 'note',
+        tableName: 'student_class',
         timestamps: false,
         associate: function (models) {
+            obj.belongsTo(models.Class);
             obj.belongsTo(models.Student);
-            obj.belongsTo(models.Test);
         }
     });
     return obj;
