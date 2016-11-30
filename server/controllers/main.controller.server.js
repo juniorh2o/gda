@@ -1,37 +1,64 @@
-var db = require("./../connection");
+const   async   = require('async'),
+        db      = require("./../connection"),
+        raw     = true;
 
-exports.getGraphList = function (req, res) {
-    var response = {};
-    db.Discipline.findAll({raw: true}).then(function (data) {
-        response.Discipline = data;
-        db.Teacher.findAll({raw: true}).then(function (data) {
-            response.Teacher = data;
-            db.Student.findAll({raw: true}).then(function (data) {
-                response.Student = data;
-                db.Class.findAll({raw: true}).then(function (data) {
-                    response.Class = data;
-                    db.Test.findAll({raw: true}).then(function (data) {
-                        response.Test = data;
-                        return res.status(200).jsonp(response);
-                    }).catch(function (err) {
-                        console.log(err);
-                        return res.status(400).json({success: false, err: err});
-                    });
-                }).catch(function (err) {
-                    console.log(err);
-                    return res.status(400).json({success: false, err: err});
-                });
-            }).catch(function (err) {
-                console.log(err);
-                return res.status(400).json({success: false, err: err});
+exports.getGraphList = function(req, res) {
+
+    async.parallel({
+        
+        Discipline : function(asyncCallback) {
+
+            return db.Discipline.findAll({ raw }).then(function(disciplines) { 
+                return asyncCallback(null, disciplines);
+            }).catch(function(err) {
+                return asyncCallback(err); 
             });
-        }).catch(function (err) {
-            console.log(err);
-            return res.status(400).json({success: false, err: err});
-        });
-    }).catch(function (err) {
-        console.log(err);
-        return res.status(400).json({success: false, err: err});
+        },
+
+        Teacher : function(asyncCallback) {
+
+            return db.Teacher.findAll({ raw }).then(function(teachers) { 
+                return asyncCallback(null, teachers);
+            }).catch(function(err) {
+                return asyncCallback(err); 
+            });
+        },
+
+        Student : function(asyncCallback) {
+
+            return db.Student.findAll({ raw }).then(function(students) { 
+                return asyncCallback(null, students);
+            }).catch(function(err) {
+                return asyncCallback(err); 
+            });
+        },
+
+        Class : function(asyncCallback) {
+
+            return db.Class.findAll({ raw }).then(function(classes) { 
+                return asyncCallback(null, classes);
+            }).catch(function(err) {
+                return asyncCallback(err); 
+            });
+        },
+
+        Test : function(asyncCallback) {
+
+            return db.Test.findAll({ raw }).then(function(tests) { 
+                return asyncCallback(null, tests);
+            }).catch(function(err) {
+                return asyncCallback(err); 
+            });
+        },
+
+    }, function(errAsync, response) {
+
+        if (errAsync) {
+
+            return res.status(400).json({ success : false, err: errAsync });
+        }
+
+        return res.status(200).jsonp(response);
     });
 };
 

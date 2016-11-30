@@ -25,10 +25,10 @@ angular.module('gdaApp').controller('MainController',
 
             function changeData(content, appendText) {
                 $http.post('/api/graph/getData', content).success(function (res) {
-                    console.log(res);
-                    $scope.labels = res.labels;
-                    $scope.data = res.data;
-                    $scope.title = res.title;
+                     
+                    $scope.labels   = res.labels;
+                    $scope.data     = res.data;
+                    $scope.title    = res.title;
 
                     if (appendText != "")
                         $scope.title += " > " + appendText;
