@@ -1,12 +1,12 @@
-module.exports = function (conn, Sequelize) {
-    var obj = conn.define('StudentClass', {
-    }, {
-        tableName: 'student_class',
-        timestamps: false,
-        associate: function (models) {
-            obj.belongsTo(models.Class);
-            obj.belongsTo(models.Student);
+module.exports = function(sequelize, DataTypes) {
+
+    return sequelize.define('StudentClass', {}, {
+        tableName   : 'student_class',
+        timestamps  : false,
+        associate   : function(models) {
+
+            models.StudentClass.belongsTo(models.Class);
+            models.StudentClass.belongsTo(models.Student);
         }
-    });
-    return obj;
+    })
 };

@@ -1,16 +1,24 @@
-module.exports = function (conn, Sequelize) {
-    var obj = conn.define('Test', {
-        name: {
-            type: Sequelize.STRING,
-            allowNull: false
+module.exports = function(sequelize, DataTypes) {
+
+    return sequelize.define('Test', {
+        name : {
+            type      : DataTypes.STRING,
+            allowNull : false
         }
     }, {
-        tableName: 'test',
-        timestamps: false,
-        associate: function (models) {
-            obj.hasMany(models.Note);
-            obj.belongsTo(models.Class);
+        tableName    : 'test',
+        timestamps   : false,
+        defaultScope : {
+
+            order : [['name', 'ASC']]
+        },
+        classMethods : {
+
+            associate : function(models) {
+
+                models.Test.hasMany(models.Note);
+                models.Test.belongsTo(models.Class);
+            }
         }
-    });
-    return obj;
+    })
 };
