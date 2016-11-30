@@ -4,51 +4,42 @@ const   async   = require('async'),
 
 exports.getGraphList = function(req, res) {
 
+    const getData = function(model, callback) {
+
+        return db[model].findAll({ raw }).then(function(results) {
+
+            return callback(null, results);
+        }).catch(function(err) {
+
+            return callback(err);
+        });
+    };
+
     async.parallel({
         
         Discipline : function(asyncCallback) {
 
-            return db.Discipline.findAll({ raw }).then(function(disciplines) { 
-                return asyncCallback(null, disciplines);
-            }).catch(function(err) {
-                return asyncCallback(err); 
-            });
+            return getData('Discipline', asyncCallback);
         },
 
         Teacher : function(asyncCallback) {
 
-            return db.Teacher.findAll({ raw }).then(function(teachers) { 
-                return asyncCallback(null, teachers);
-            }).catch(function(err) {
-                return asyncCallback(err); 
-            });
+            return getData('Teacher', asyncCallback);
         },
 
         Student : function(asyncCallback) {
 
-            return db.Student.findAll({ raw }).then(function(students) { 
-                return asyncCallback(null, students);
-            }).catch(function(err) {
-                return asyncCallback(err); 
-            });
+            return getData('Student', asyncCallback);
         },
 
         Class : function(asyncCallback) {
 
-            return db.Class.findAll({ raw }).then(function(classes) { 
-                return asyncCallback(null, classes);
-            }).catch(function(err) {
-                return asyncCallback(err); 
-            });
+            return getData('Class', asyncCallback);
         },
 
         Test : function(asyncCallback) {
 
-            return db.Test.findAll({ raw }).then(function(tests) { 
-                return asyncCallback(null, tests);
-            }).catch(function(err) {
-                return asyncCallback(err); 
-            });
+            return getData('Test', asyncCallback);
         },
 
     }, function(errAsync, response) {

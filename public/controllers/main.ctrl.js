@@ -20,6 +20,14 @@ angular.module('gdaApp').controller('MainController',
                             min: 0
                         }
                     }]
+                },
+                tooltips : {
+                    callbacks : {
+                        label : function(tooltipItems) {
+
+                            return 'Média: ' + parseFloat(Math.round(tooltipItems.yLabel * 100) / 100).toFixed(2);
+                        }
+                    }
                 }
             };
 
