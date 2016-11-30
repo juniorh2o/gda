@@ -5,7 +5,7 @@ var Sequelize = require('sequelize');
 var db = {};
 
 // create your instance of sequelize
-var conn = new Sequelize("gda", "root", "root", {
+var conn = new Sequelize("gda", "root", "", {
     host: "127.0.0.1",
     dialect: 'mysql',
     pool: {
